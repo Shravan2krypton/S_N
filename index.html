@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Notes Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --text:#222;
+      --muted:#667085;
+      --primary:#2563eb;   /* Blue */
+      --accent:#22c55e;    /* Green */
+      --highlight:#f59e0b; /* Orange */
+      --white:#fff;
+      --card:#ffffff;
+      --shadow:0 10px 20px rgba(0,0,0,0.08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Roboto, Open Sans, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(180%) blur(6px);
+      background:rgba(255,255,255,0.85);
+      border-bottom:1px solid #eaeef4;
+    }
+    .nav{
+      max-width:1100px; margin:0 auto; padding:12px 20px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:700; font-size:18px;
+      color:var(--primary);
+    }
+    .brand .logo{
+      width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--accent));
+      display:flex;align-items:center;justify-content:center;color:white;font-weight:700;
+      box-shadow:var(--shadow);
+    }
+    .links{
+      display:flex; gap:16px; flex-wrap:wrap;
+    }
+    .links a{
+      padding:8px 12px; border-radius:10px; color:#111;
+    }
+    .links a:hover{background:#eef4ff}
+    /* Hero */
+    .hero{
+      max-width:1100px; margin:24px auto; padding:24px 20px;
+      background:linear-gradient(135deg,#eaf3ff,#f1fff4);
+      border-radius:var(--radius);
+      display:grid; grid-template-columns:1.2fr 1fr; gap:24px; align-items:center;
+      box-shadow:var(--shadow);
+    }
+    .hero h1{
+      font-size:32px; margin:0 0 12px; color:#0f172a;
+    }
+    .hero p{color:var(--muted); margin:0 0 16px}
+    .cta{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px; border-radius:12px; border:none; cursor:pointer;
+      font-weight:600; box-shadow:var(--shadow);
+    }
+    .btn.primary{background:var(--primary); color:white}
+    .btn.secondary{background:var(--accent); color:white}
+    .illustration{
+      min-height:180px; border-radius:14px;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(37,99,235,0.15) 0, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(34,197,94,0.16) 0, transparent 60%),
+        radial-gradient(circle at 60% 80%, rgba(245,158,11,0.18) 0, transparent 60%),
+        linear-gradient(135deg, #ffffff, #f7fafc);
+      border:1px dashed #cbd5e1;
+      display:flex; align-items:center; justify-content:center; color:#334155; font-weight:600;
+    }
+    /* Sections */
+    section{max-width:1100px; margin:28px auto; padding:0 20px}
+    .section-title{
+      display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;
+    }
+    .section-title h2{margin:0; font-size:22px}
+    .muted{color:var(--muted); font-size:14px}
+    /* Department grid */
+    .grid{
+      display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+    }
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} .grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:600px){ .grid{grid-template-columns:1fr} }
+    .card{
+      background:var(--card); border-radius:14px; padding:16px; box-shadow:var(--shadow);
+      display:flex; align-items:center; gap:14px; justify-content:space-between;
+    }
+    .card .left{display:flex; align-items:center; gap:14px}
+    .icon{
+      width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+      color:white; font-weight:700;
+    }
+    .icon.blue{background:var(--primary)}
+    .icon.green{background:var(--accent)}
+    .icon.orange{background:var(--highlight)}
+    .card a.view{
+      padding:8px 12px; border-radius:10px; background:#eef4ff; color:#0f172a; font-weight:600;
+    }
+    .card a.view:hover{background:#e1ecff}
+    /* Carousel */
+    .carousel{
+      background:var(--white); border-radius:14px; box-shadow:var(--shadow); overflow:hidden;
+      display:grid; grid-template-columns:1fr auto; align-items:center;
+    }
+    .slide{
+      padding:18px;
+    }
+    .quote{
+      font-size:18px; font-weight:600; color:#0f172a;
+    }
+    .by{color:var(--muted); font-size:14px}
+    .dots{display:flex; gap:6px; padding:0 14px}
+    .dot{
+      width:10px; height:10px; border-radius:50%; background:#e5e7eb; cursor:pointer;
+    }
+    .dot.active{background:var(--primary)}
+    /* Quick access */
+    .searchbar{
+      display:flex; gap:12px; flex-wrap:wrap;
+      background:var(--white); padding:14px; border-radius:14px; box-shadow:var(--shadow);
+    }
+    .searchbar input{
+      flex:1; min-width:200px; padding:10px 12px; border:1px solid #d0d7e2; border-radius:10px;
+    }
+    .popular{
+      margin-top:12px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+    }
+    @media (max-width:800px){ .popular{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:520px){ .popular{grid-template-columns:1fr} }
+    .pop-item{
+      background:var(--white); padding:12px; border-radius:12px; box-shadow:var(--shadow);
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    /* Footer */
+    footer{
+      margin-top:36px; background:#0f172a; color:#cbd5e1;
+    }
+    .foot{
+      max-width:1100px; margin:0 auto; padding:20px;
+      display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center;
+    }
+    .foot-links{display:flex; gap:14px; flex-wrap:wrap}
+    .foot a{color:#cbd5e1}
+    .foot .tagline{font-weight:600; color:#e2e8f0}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">SN</div>
+        <span>Student Notes Portal</span>
+      </div>
+      <nav class="links">
+        <a href="#">Home</a>
+        <a href="#departments">Notes</a>
+        <a href="#pyq">PYQ Papers</a>
+        <a href="#upload">Upload</a>
+        <a href="#about">About Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div>
+      <h1>Empowering Students, One Note at a Time ✨</h1>
+      <p class="muted">Success doesn’t come from what you do occasionally; it comes from what you do consistently. Find curated notes, PYQs, and uploads from seniors — all in one place.</p>
+      <div class="cta">
+        <button class="btn primary" onclick="scrollToId('departments')">🔍 Browse Notes</button>
+        <button class="btn secondary" onclick="scrollToId('upload')">📤 Upload Papers</button>
+      </div>
+    </div>
+    <div class="illustration">
+      Study smarter, not harder — your seniors have your back.
+    </div>
+  </section>
+
+  <!-- Departments -->
+  <section id="departments">
+    <div class="section-title">
+      <h2>Departments</h2>
+      <span class="muted">Choose your branch to view notes and PYQs</span>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="left">
+          <div class="icon blue">💻</div>
+          <div>
+            <div><strong>Computer Engineering</strong></div>
+            <div class="muted">Programming, DS, OS, Networks</div>
+          </div>
+        </div>
+        <a class="view" href="/department/computer">View notes</a>
+      </div>
+
+      <div class="card">
+        <div class="left">
+          <div class="icon green">📡</div>
+          <div>
+            <div><strong>Electronics & Communication</strong></div>
+            <div class="muted">Circuits, Signals, VLSI</div>
+          </div>
+        </div>
+        <a class="view" href="/department/ec">View notes</a>
+      </div>
+
+      <div class="card">
+        <div class="left">
+          <div class="icon orange">⚙️</div>
+          <div>
+            <div><strong>Mechanical</strong></div>
+            <div class="muted">Thermo, Design, Manufacturing</div>
+          </div>
+        </div>
+        <a class="view" href="/department/mechanical">View notes</a>
+      </div>
+
+      <div class="card">
+        <div class="left">
+          <div class="icon blue">🏗️</div>
+          <div>
+            <div><strong>Civil</strong></div>
+            <div class="muted">Structures, Geo, Transportation</div>
+          </div>
+        </div>
+        <a class="view" href="/department/civil">View notes</a>
+      </div>
+
+      <div class="card">
+        <div class="left">
+          <div class="icon green">⚗️</div>
+          <div>
+            <div><strong>Chemical</strong></div>
+            <div class="muted">Process, Reaction, Plant Design</div>
+          </div>
+        </div>
+        <a class="view" href="/department/chemical">View notes</a>
+      </div>
+
+      <div class="card">
+        <div class="left">
+          <div class="icon orange">🔌</div>
+          <div>
+            <div><strong>Electrical</strong></div>
+            <div class="muted">Machines, Power, Control</div>
+          </div>
+        </div>
+        <a class="view" href="/department/electrical">View notes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Motivational Carousel -->
+  <section id="inspire">
+    <div class="section-title">
+      <h2>Stay Inspired</h2>
+      <span class="muted">Small steps, big outcomes</span>
+    </div>
+
+    <div class="carousel">
+      <div class="slide">
+        <div class="quote" id="quoteText">“Dream big, work hard, stay humble.”</div>
+        <div class="by" id="quoteBy">— Anonymous</div>
+      </div>
+      <div class="dots">
+        <span class="dot active" onclick="setSlide(0)"></span>
+        <span class="dot" onclick="setSlide(1)"></span>
+        <span class="dot" onclick="setSlide(2)"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Access -->
+  <section id="quick">
+    <div class="section-title">
+      <h2>Quick access</h2>
+      <span class="muted">Find notes and papers instantly</span>
+    </div>
+
+    <div class="searchbar">
+      <input id="searchInput" type="text" placeholder="Search notes, subjects, or PYQs..." oninput="onSearchInput()" />
+      <button class="btn primary" onclick="performSearch()">Search</button>
+      <button class="btn" style="background:var(--highlight);color:#111" onclick="clearSearch()">Clear</button>
+    </div>
+
+    <div class="popular" id="popularList">
+      <!-- Example popular items -->
+      <div class="pop-item">
+        <span>DSA Cheatsheet (CSE, Sem 3)</span>
+        <a href="/notes/dsa-cheatsheet">Open</a>
+      </div>
+      <div class="pop-item">
+        <span>Signals & Systems PYQ (EC, 2023)</span>
+        <a href="/pyq/signals-2023">Open</a>
+      </div>
+      <div class="pop-item">
+        <span>Thermodynamics Notes (ME, Sem 4)</span>
+        <a href="/notes/thermo-sem4">Open</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="foot">
+      <div class="foot-links">
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#feedback">Feedback</a>
+        <a href="#contributors">Contributors</a>
+      </div>
+      <div class="tagline">Together, we rise 📈</div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll helper
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(el){ el.scrollIntoView({behavior:'smooth', block:'start'}); }
+    }
+
+    // Carousel logic
+    const slides = [
+      { text: "“Dream big, work hard, stay humble.”", by: "— Anonymous" },
+      { text: "“Consistency compounds. Show up, even on hard days.”", by: "— Senior’s Note" },
+      { text: "“Your future self will thank you for starting today.”", by: "— Faculty Mentor" }
+    ];
+    let current = 0;
+    const quoteText = document.getElementById('quoteText');
+    const quoteBy = document.getElementById('quoteBy');
+    const dots = document.querySelectorAll('.dot');
+
+    function renderSlide(){
+      quoteText.textContent = slides[current].text;
+      quoteBy.textContent = slides[current].by;
+      dots.forEach((d,i)=> d.classList.toggle('active', i===current));
+    }
+    function setSlide(i){ current = i; renderSlide(); }
+    setInterval(()=>{ current = (current+1)%slides.length; renderSlide(); }, 4000);
+    renderSlide();
+
+    // Search mock
+    function onSearchInput(){
+      // You can add live filtering here later
+    }
+    function performSearch(){
+      const q = document.getElementById('searchInput').value.trim();
+      if(!q) return alert("Type something to search.");
+      alert("Search for: " + q + " (wire this to backend /notes?query=...)");
+    }
+    function clearSearch(){
+      document.getElementById('searchInput').value = "";
+    }
+  </script>
+</body>
+</html>
