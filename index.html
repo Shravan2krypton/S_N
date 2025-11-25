@@ -10,9 +10,9 @@
       --bg:#f6f8fb;
       --text:#222;
       --muted:#667085;
-      --primary:#2563eb;   /* Blue */
-      --accent:#22c55e;    /* Green */
-      --highlight:#f59e0b; /* Orange */
+      --primary:#2563eb;   
+      --accent:#22c55e;    
+      --highlight:#f59e0b; 
       --white:#fff;
       --card:#ffffff;
       --shadow:0 10px 20px rgba(0,0,0,0.08);
@@ -27,6 +27,7 @@
       line-height:1.6;
     }
     a{color:inherit;text-decoration:none}
+
     /* Header */
     header{
       position:sticky; top:0; z-index:50;
@@ -54,6 +55,7 @@
       padding:8px 12px; border-radius:10px; color:#111;
     }
     .links a:hover{background:#eef4ff}
+
     /* Hero */
     .hero{
       max-width:1100px; margin:24px auto; padding:24px 20px;
@@ -84,6 +86,7 @@
       border:1px dashed #cbd5e1;
       display:flex; align-items:center; justify-content:center; color:#334155; font-weight:600;
     }
+
     /* Sections */
     section{max-width:1100px; margin:28px auto; padding:0 20px}
     .section-title{
@@ -91,6 +94,7 @@
     }
     .section-title h2{margin:0; font-size:22px}
     .muted{color:var(--muted); font-size:14px}
+
     /* Department grid */
     .grid{
       display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
@@ -113,23 +117,21 @@
       padding:8px 12px; border-radius:10px; background:#eef4ff; color:#0f172a; font-weight:600;
     }
     .card a.view:hover{background:#e1ecff}
+
     /* Carousel */
     .carousel{
       background:var(--white); border-radius:14px; box-shadow:var(--shadow); overflow:hidden;
       display:grid; grid-template-columns:1fr auto; align-items:center;
     }
-    .slide{
-      padding:18px;
-    }
-    .quote{
-      font-size:18px; font-weight:600; color:#0f172a;
-    }
+    .slide{padding:18px}
+    .quote{font-size:18px; font-weight:600; color:#0f172a}
     .by{color:var(--muted); font-size:14px}
     .dots{display:flex; gap:6px; padding:0 14px}
     .dot{
       width:10px; height:10px; border-radius:50%; background:#e5e7eb; cursor:pointer;
     }
     .dot.active{background:var(--primary)}
+
     /* Quick access */
     .searchbar{
       display:flex; gap:12px; flex-wrap:wrap;
@@ -147,6 +149,7 @@
       background:var(--white); padding:12px; border-radius:12px; box-shadow:var(--shadow);
       display:flex; justify-content:space-between; align-items:center;
     }
+
     /* Footer */
     footer{
       margin-top:36px; background:#0f172a; color:#cbd5e1;
@@ -200,6 +203,8 @@
     </div>
 
     <div class="grid">
+
+      <!-- Computer Engineering -->
       <div class="card">
         <div class="left">
           <div class="icon blue">💻</div>
@@ -211,6 +216,7 @@
         <a class="view" href="computer.html">View notes</a>
       </div>
 
+      <!-- Electronics & Communication -->
       <div class="card">
         <div class="left">
           <div class="icon green">📡</div>
@@ -221,6 +227,9 @@
         </div>
         <a class="view" href="ec.html">View notes</a>
       </div>
+
+    </div>
+  </section>
 
   <!-- Motivational Carousel -->
   <section id="inspire">
@@ -256,7 +265,6 @@
     </div>
 
     <div class="popular" id="popularList">
-      <!-- Example popular items -->
       <div class="pop-item">
         <span>Data Structure (CSE, Sem 3)</span>
       </div>
@@ -264,7 +272,7 @@
         <span>Signals & Systems (EC, Sem 3)</span>
       </div>
       <div class="pop-item">
-        <span> digital Fundamental (CSE, Sem 4)</span>
+        <span>Digital Fundamental (CSE, Sem 4)</span>
       </div>
     </div>
   </section>
@@ -283,13 +291,11 @@
   </footer>
 
   <script>
-    // Smooth scroll helper
     function scrollToId(id){
       const el = document.getElementById(id);
       if(el){ el.scrollIntoView({behavior:'smooth', block:'start'}); }
     }
 
-    // Carousel logic
     const slides = [
       { text: "“Dream big, work hard, stay humble.”", by: "— Anonymous" },
       { text: "“Consistency compounds. Show up, even on hard days.”", by: "— Senior’s Note" },
@@ -309,14 +315,11 @@
     setInterval(()=>{ current = (current+1)%slides.length; renderSlide(); }, 4000);
     renderSlide();
 
-    // Search mock
-    function onSearchInput(){
-      // You can add live filtering here later
-    }
+    function onSearchInput(){}
     function performSearch(){
       const q = document.getElementById('searchInput').value.trim();
       if(!q) return alert("Type something to search.");
-      alert("Search for: " + q + " (wire this to backend /notes?query=...)");
+      alert("Search for: " + q);
     }
     function clearSearch(){
       document.getElementById('searchInput').value = "";
