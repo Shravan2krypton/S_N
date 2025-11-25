@@ -11,11 +11,8 @@ This project is designed to be lightweight, easy to host on **GitHub Pages**, an
 - Dedicated pages for each department:
   - Computer Engineering
   - Electronics & Communication
-  - Mechanical Engineering
-  - Civil Engineering
-  - Chemical Engineering
-  - Electrical Engineering
-- Each department page has **two sections**:
+  
+- Each department page has **two sections** with **different year**:
   - 📚 Notes
   - 📝 Previous Year Papers
 - Easy PDF linking — just upload files to the `downloads/` folder.
