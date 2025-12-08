@@ -12,16 +12,22 @@
       color: #333;
       line-height: 1.6;
     }
-    header {
-      background: #2563eb;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
-    }
+    .dept-header.neon {
+  background: #0f172a;
+  color: #38bdf8;
+  padding: 2.8rem 1rem;
+  text-align: center;
+  border-bottom: 3px solid #38bdf8;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.dept-header.neon h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-shadow: 0 0 10px #38bdf8;
+}
+
     section {
       max-width: 900px;
       margin: 2rem auto;
@@ -75,9 +81,10 @@
 </head>
 <body>
 
-  <header>
-    <h1>Computer Engineering Department</h1>
-  </header>
+ <header class="dept-header neon">
+  <h1>🖥️ Computer Engineering Department 🧩</h1>
+</header>
+
 
   <!-- 1st Year Section -->
   <section id="first-year">
@@ -239,7 +246,8 @@
   </li>
 
 </ul>
-  </section>
+
+</section>
 
 
   <!-- 2nd Year Section -->
