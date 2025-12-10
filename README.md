@@ -26,7 +26,7 @@ Each department page contains:
 All PDFs can be stored in the `downloads/` folder for easy link management.
 
 ### 💬 WhatsApp Contact Page  
-A dedicated **Contact Page** (`contact.html`) where students can directly reach out on WhatsApp with a pre-filled message:
+A dedicated **Contact Page** where students can directly reach out on WhatsApp with a pre-filled message:
 
 > _"Hello senior, I want to ask about ...."_
 
