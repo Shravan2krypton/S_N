@@ -4,155 +4,346 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Us - Student Notes Portal</title>
+
   <style>
-    body {
-      font-family: 'Roboto', Arial, sans-serif;
-      margin: 0;
-      background: #f4f7fb;
-      color: #333;
-      line-height: 1.6;
+    :root {
+      --primary: #2563eb;
+      --dark-bg: #0c0c0f;
+      --light-bg: #f4f7fb;
+      --glass: rgba(255,255,255,0.6);
+      --glass-dark: rgba(0,0,0,0.6);
     }
-    header {
-      background: #2563eb;
-      color: white;
-      padding: 1rem;
-      text-align: center;
+
+    body{
+      margin:0;
+      font-family: 'Roboto', sans-serif;
+      background: var(--light-bg);
+      color:#333;
+      transition: background 0.4s ease, color 0.4s ease;
     }
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
-    }
-    section {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 1.5rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    section h2 {
-      color: #2563eb;
-      margin-bottom: 0.5rem;
-    }
-    ul {
-      list-style: none;
+
+    /* ======================= Header ======================= */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 100;
       padding: 0;
+      background: var(--glass);
+      backdrop-filter: blur(12px) saturate(180%);
+      border-bottom: 1px solid #dbe4f0;
+      display:flex;
+      justify-content:center;
+      transition: all 0.5s ease;
     }
-    ul li {
-      background: #eef4ff;
-      margin: 0.5rem 0;
-      padding: 0.6rem;
-      border-radius: 8px;
+
+    body.dark-mode header{
+      background: rgba(0,0,0,0.75);
+      border-bottom:1px solid #0ff;
     }
-    .hero {
-      text-align: center;
+
+    .nav{
+      max-width: 1150px;
+      width:100%;
+      margin: 0 auto;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 0.3px;
+      color: var(--primary);
+    }
+
+    body.dark-mode .brand span{
+      color:#0ff;
+      text-shadow:0 0 10px #0ff;
+    }
+
+    .logo{
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: conic-gradient(from 180deg, #2563eb,#22c55e,#f59e0b,#2563eb);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-weight:900;
+      font-size:17px;
+      animation: spinGlow 6s linear infinite;
+      box-shadow: 0 0 10px rgba(37,99,235,0.4),0 0 20px rgba(34,197,94,0.3);
+      transition: all 0.5s ease;
+    }
+
+    @keyframes spinGlow {
+      from { transform: rotate(0deg);}
+      to { transform: rotate(360deg);}
+    }
+
+    body.dark-mode .logo{
+      background: conic-gradient(from 180deg,#0ff,#f0f,#0ff);
+      box-shadow: 0 0 15px #0ff, 0 0 30px #f0f;
+    }
+
+    .links a{
+      text-decoration:none;
+      font-size:16px;
+      margin-right:18px;
+      color:#333;
+      font-weight:600;
+      transition:color .3s;
+    }
+
+    .links a:last-child{ margin-right:0; }
+
+    .links a:hover{ color: #2563eb; }
+
+    body.dark-mode .links a{
+      color:#d2faff;
+    }
+
+    body.dark-mode .links a:hover{
+      color:#0ff;
+      text-shadow:0 0 10px #0ff;
+    }
+
+    #modeToggle{
+      padding:8px 14px;
+      border:none;
+      border-radius:8px;
+      font-size:14px;
+      cursor:pointer;
+      background:#2563eb;
+      color:white;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    #modeToggle:hover{
+      background:#1d4fd6;
+    }
+
+    body.dark-mode #modeToggle{
+      background:#0ff;
+      color:#000;
+      box-shadow:0 0 12px #0ff;
+    }
+
+    /* ======================= Hero ======================= */
+    .hero{
+      text-align:center;
       padding: 2rem;
       background: linear-gradient(135deg, #2563eb, #22c55e);
-      color: white;
-      border-radius: 10px;
-      margin-bottom: 1.5rem;
+      color:white;
+      margin:2rem;
+      border-radius:12px;
+      transition:.4s;
     }
-    .hero h1 {
-      margin: 0;
-      font-size: 2rem;
+
+    body.dark-mode .hero{
+      background:linear-gradient(135deg,#00ffff,#ff00ff);
+      color:#000;
+      box-shadow:0 0 20px #0ff;
     }
-    .hero p {
-      font-size: 1.1rem;
-      margin-top: 0.5rem;
+
+    /* ======================= Sections ======================= */
+    section{
+      max-width:900px;
+      margin:2rem auto;
+      padding:1.7rem;
+      background:white;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+      transition:0.4s;
     }
-    .cta {
-      text-align: center;
-      margin-top: 1rem;
+
+    body.dark-mode section{
+      background:#111;
+      color:#d2faff;
+      border:1px solid #0ff;
+      box-shadow:0 0 15px #0ff;
     }
-    .cta a {
-      display: inline-block;
-      background: #f59e0b;
-      color: #111;
-      padding: 0.7rem 1.2rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      margin: 0.5rem;
+
+    section h2{
+      color:#2563eb;
+      margin-bottom:0.5rem;
     }
-    .cta a:hover {
-      background: #d97706;
+
+    body.dark-mode section h2{
+      color:#0ff;
+      text-shadow:0 0 10px #0ff;
     }
-    footer {
-      background: #0f172a;
-      color: #cbd5e1;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
+
+    ul li{
+      background:#eef4ff;
+      padding:0.6rem;
+      border-radius:8px;
+      margin:6px 0;
     }
-    footer a {
-      color: #cbd5e1;
-      margin: 0 8px;
-      text-decoration: none;
+
+    body.dark-mode ul li{
+      background:#0c2333;
+      color:#bffaff;
+      border:1px solid #0ff4;
     }
-    footer a:hover {
-      text-decoration: underline;
+
+    /* ======================= CTA Buttons ======================= */
+    .cta{
+      text-align:center;
     }
+
+    .cta a{
+      display:inline-block;
+      background:#f59e0b;
+      color:#111;
+      padding:0.7rem 1.2rem;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:bold;
+      margin:0.5rem;
+      transition:0.3s;
+    }
+
+    .cta a:hover{
+      background:#d97706;
+    }
+
+    body.dark-mode .cta a{
+      background:#0ff;
+      color:#000;
+      box-shadow:0 0 12px #0ff;
+    }
+
+    /* ======================= Footer ======================= */
+    footer{
+      background:#0f172a;
+      color:#cbd5e1;
+      text-align:center;
+      padding:1rem;
+      margin-top:2rem;
+    }
+
+    body.dark-mode footer{
+      background:#000;
+      color:#0ff;
+      border-top:1px solid #0ff;
+      box-shadow:0 0 12px #0ff inset;
+    }
+
+    footer a{
+      color:inherit;
+      margin:0 8px;
+      text-decoration:none;
+    }
+
+    footer a:hover{
+      text-decoration:underline;
+    }
+
   </style>
 </head>
+
 <body>
 
+  <!-- ======================= HEADER ======================= -->
   <header>
-    <h1>About Us — Student Notes Portal</h1>
+    <div class="nav">
+
+      <div class="brand">
+        <div class="logo">SN</div>
+        <span>Student Notes Portal</span>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:18px;">
+        <nav class="links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+        </nav>
+
+        <button id="modeToggle">🌙 Dark Mode</button>
+      </div>
+    </div>
   </header>
 
+  <!-- ======================= HERO ======================= -->
   <div class="hero">
     <h1>Empowering Students Together ✨</h1>
     <p>This portal was created by seniors to make learning easier for juniors.</p>
   </div>
 
+  <!-- ======================= CONTENT ======================= -->
   <section>
     <h2>Our Mission</h2>
-    <p>We provide easy access to notes, previous year papers, and study resources so every student can prepare smarter, not harder. Knowledge should be shared freely, and seniors can guide juniors by passing on their experience.</p>
+    <p>We aim to build a seamless academic platform where every student can access high-quality study materials without confusion or delay. Our mission is to create an environment where learning becomes simpler, faster, and more effective—whether it’s preparing for exams, completing assignments, or understanding difficult topics. The Student Notes Portal is designed to bridge the knowledge gap between seniors and juniors so that no student feels lost or unprepared. By centralizing notes, question papers, and study guides, we want to empower students with the right resources at the right time.</p>
   </section>
 
   <section>
     <h2>Who We Are</h2>
-    <p>This portal was initiated by <strong>Nikhil</strong> and supported by fellow seniors across different departments. Together, we’ve compiled resources to help juniors succeed in exams and projects.</p>
+    <p>This portal is more than just a collection of notes — it’s a support system.
+Many students spend hours searching for the right PDFs, past papers, or topic explanations. By offering everything in one place, the Student Notes Portal reduces stress, saves time, and ensures that every student gets equal access to study materials. It represents a small effort from seniors that creates a big impact on juniors. From helping during exam season to assisting in clearing backlogs, this platform ensures that no student is left behind and that everyone has the tools to succeed.</p>
   </section>
 
   <section>
     <h2>Why This Portal Matters</h2>
     <ul>
       <li>📚 Easy access to notes</li>
-      <li>📝 Previous year papers for exam prep</li>
+      <li>📝 Previous year papers</li>
       <li>🤝 Built by seniors, for juniors</li>
       <li>🚀 Inspiring students to aim higher</li>
+      <li>💡 Have suggestions, want to help, or wish to contribute notes? Your input can help hundreds of students.</li>
     </ul>
   </section>
 
   <section>
     <h2>Our Vision</h2>
-    <p>We aim to expand this portal with quizzes, interactive discussions, and AI-powered summaries, making it a one-stop academic hub for all departments.</p>
+    <p>We envision the Student Notes Portal becoming a complete academic companion for every student from their first day of college to their final semester. Our goal is to create a smart, evolving ecosystem where knowledge is not just stored but shared, updated, and continuously improved by seniors and juniors working together.
+
+In the coming years, we aim to integrate advanced features such as AI-powered study assistants, chapter-wise summaries, interactive quizzes, doubt-solving forums, and department-specific digital libraries. We want this platform to grow beyond simple notes — into a place where students can discuss ideas, prepare for exams strategically, and build confidence in every subject.
+
+At its core, our vision is to build a legacy: a student-driven hub that continues to support future batches long after we graduate. Every contribution today becomes a stepping stone for someone tomorrow. By nurturing this cycle of learning and guidance, we hope to inspire a culture where students uplift each other and academic success becomes a shared journey, not an individual struggle..</p>
   </section>
 
   <div class="cta">
     <p>💡 Have feedback or want to contribute?</p>
-    <a href="#contact">Reach out to us</a>
-    <a href="https://chat.whatsapp.com/IYm1EWCvIg7CnPQpxoUwmd" target="_blank">Join Our WhatsApp Group</a>
+    <a href="feedback.html">Give Feedback</a>
+    <a href="https://chat.whatsapp.com/IYm1EWCvIg7CnPQpxoUwmd" target="_blank">Join WhatsApp Group</a>
   </div>
 
+  <!-- ======================= FOOTER ======================= -->
   <footer>
     <p>
-      <a href="#about">About</a> | 
-      <a href="#contact">Contact</a> | 
-      <a href="#feedback">Feedback</a> | 
-      <a href="#contributors">Contributors</a> | 
-      <a href="https://chat.whatsapp.com/IYm1EWCvIg7CnPQpxoUwmd" target="_blank">WhatsApp Group</a>
+      <a href="about.html">About</a> |
+      <a href="#contact">Contact</a> |
+      <a href="feedback.html">Feedback</a> |
+      <a href="#">Contributors</a>
     </p>
     <p><strong>Together, we rise 📈</strong></p>
   </footer>
 
+  <!-- ======================= JS: DARK MODE ======================= -->
   <script>
-    // Simple motivational message rotation
+    const toggle = document.getElementById("modeToggle");
+
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      toggle.textContent = 
+        document.body.classList.contains("dark-mode")
+        ? "☀ Light Mode"
+        : "🌙 Dark Mode";
+    });
+
+    // Rotate motivational quotes
     const messages = [
       "“Dream big, work hard, stay humble.”",
-      "“Consistency compounds. Show up, even on hard days.”",
-      "“Your future self will thank you for starting today.”"
+      "“Your future self will thank you for starting today.”",
+      "“Consistency compounds. Keep going.”"
     ];
     let index = 0;
     setInterval(() => {
