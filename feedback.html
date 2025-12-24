@@ -3,65 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feedback - Student Notes Portal</title>
+  <title>Redirecting… - Student Notes Portal</title>
+
+  <!-- Auto Redirect after 3 seconds -->
+  <meta http-equiv="refresh" content="3;url=https://docs.google.com/forms/d/e/1FAIpQLSeD1gzWgPMNlrc8qrfoKZEFEo5PtABe8yGVskOeI9mmoRmjig/viewform">
+
   <style>
-    /* ====== Base Styles ====== */
     body {
       font-family: 'Roboto', Arial, sans-serif;
       margin: 0;
       background: #f4f7fb;
       color: #333;
-      line-height: 1.6;
       transition: background 0.3s, color 0.3s;
     }
     body.dark-mode { background: #111; color: #e0ffff; }
-    a { color: #2563eb; text-decoration: none; }
-    a:hover { text-decoration: underline; }
 
-    /* ====== Header ====== */
+    /* ===== Header ===== */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      padding: 0;
       background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(12px) saturate(180%);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid #dbe4f0;
-      display: flex;
-      justify-content: center;
-      transition: all 0.5s ease;
     }
-    header.dark-mode { background: rgba(0,0,0,0.8); border-bottom: 1px solid #222; }
-    .nav { max-width: 1150px; margin: 0 auto; padding: 14px 22px; display: flex; align-items: center; justify-content: space-between; }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 20px; letter-spacing: 0.3px; color: var(--primary); text-shadow: 0 2px 4px rgba(0,0,0,0.15); }
-    .logo { width: 40px; height: 40px; border-radius: 50%; background: conic-gradient(from 180deg, #2563eb,#22c55e,#f59e0b,#2563eb); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 900; font-size: 17px; box-shadow: 0 0 10px rgba(37,99,235,0.4),0 0 20px rgba(34,197,94,0.3); transition: all 0.5s ease; }
-    nav.links a { margin-left: 20px; font-weight: 600; color: #333; transition: color 0.3s; }
-    body.dark-mode nav.links a { color: #e0ffff; }
+    .nav {
+      max-width: 1150px;
+      margin: auto;
+      padding: 14px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 20px;
+    }
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: conic-gradient(from 180deg,#2563eb,#22c55e,#f59e0b,#2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 900;
+    }
+    nav a {
+      margin-left: 20px;
+      font-weight: 600;
+      color: #333;
+      text-decoration: none;
+    }
+    body.dark-mode nav a { color: #e0ffff; }
 
-    /* ====== Page Header ====== */
-    .feedback-header { background: #0f172a; color: #38bdf8; padding: 2.5rem 1rem; text-align: center; border-bottom: 3px solid #38bdf8; box-shadow: 0 0 20px rgba(56, 189, 248, 0.4); }
-    .feedback-header h1 { margin: 0; font-size: 2.5rem; font-weight: 800; text-shadow: 0 0 10px #38bdf8; }
-    .feedback-header p { margin-top: 0.5rem; font-size: 1.1rem; }
+    /* ===== Redirect Box ===== */
+    .redirect-box {
+      max-width: 600px;
+      margin: 4rem auto;
+      padding: 2.5rem;
+      text-align: center;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 0 25px rgba(56,189,248,0.3);
+    }
+    body.dark-mode .redirect-box {
+      background: #1a1a1a;
+      box-shadow: 0 0 25px #0ff;
+    }
 
-    /* ====== Form Section ====== */
-    section { max-width: 700px; margin: 2rem auto; padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: background 0.3s, color 0.3s; }
-    body.dark-mode section { background: #1a1a1a; color: #e0ffff; }
-    form { display: flex; flex-direction: column; gap: 1rem; }
-    input, textarea { padding: 0.8rem 1rem; border-radius: 8px; border: 1px solid #ccc; font-size: 1rem; outline: none; transition: all 0.3s; }
-    input:focus, textarea:focus { border-color: #2563eb; box-shadow: 0 0 5px rgba(37,99,235,0.4); }
-    body.dark-mode input, body.dark-mode textarea { background: #111; border: 1px solid #38bdf8; color: #e0ffff; }
-    button { padding: 0.8rem 1.5rem; border: none; border-radius: 8px; background: #2563eb; color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.3s; }
-    button:hover { background: #1e40af; }
+    .redirect-box h1 {
+      color: #2563eb;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
 
-    /* ====== Error Messages ====== */
-    .error { color: #dc2626; font-size: 0.9rem; display: none; }
+    .redirect-box p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
 
-    /* ====== Footer ====== */
-    footer { background: #0f172a; color: #cbd5e1; text-align: center; padding: 1rem; margin-top: 2rem; }
-    footer a { color: #cbd5e1; margin: 0 8px; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    .redirect-box a {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #2563eb;
+      color: white;
+      border-radius: 8px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 3rem;
+    }
   </style>
 </head>
+
 <body>
 <header>
   <div class="nav">
@@ -69,7 +115,7 @@
       <div class="logo">SN</div>
       <span>Student Notes Portal</span>
     </div>
-    <nav class="links">
+    <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About Us</a>
       <a href="#" id="modeToggle">🌙 Dark Mode</a>
@@ -77,90 +123,24 @@
   </div>
 </header>
 
-<div class="feedback-header">
-  <h1>📢 Feedback</h1>
-  <p>We value your suggestions and feedback!</p>
+<div class="redirect-box">
+  <h1>🚀 Almost There!</h1>
+  <p>You are being redirected to our official feedback form.</p>
+  <p>If the page doesn’t open automatically, click the button below.</p>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSeD1gzWgPMNlrc8qrfoKZEFEo5PtABe8yGVskOeI9mmoRmjig/viewform">
+    Open Feedback Form
+  </a>
 </div>
 
-<section>
-  <form id="feedbackForm" novalidate>
-    <label for="name">Your Name</label>
-    <input type="text" id="name" name="name" placeholder="Enter your name" required>
-    <div class="error" id="nameError">Please enter your name.</div>
-
-    <label for="email">Email Address</label>
-    <input type="email" id="email" name="email" placeholder="Enter your email" required>
-    <div class="error" id="emailError">Please enter a valid email address.</div>
-
-    <label for="subject">Subject</label>
-    <input type="text" id="subject" name="subject" placeholder="Feedback subject" required>
-    <div class="error" id="subjectError">Please enter a subject.</div>
-
-    <label for="message">Message</label>
-    <textarea id="message" name="message" rows="5" placeholder="Write your feedback here..." required></textarea>
-    <div class="error" id="messageError">Please enter your message.</div>
-
-    <button type="submit">Submit Feedback</button>
-  </form>
-</section>
-
 <footer>
-  <p>
-    <a href="index.html">Home</a> | 
-    <a href="about.html">About Us</a> | 
-    <a href="https://chat.whatsapp.com/IYm1EWCvIg7CnPQpxoUwmd" target="_blank">WhatsApp Group</a>
-  </p>
   <p><strong>Together, we rise 📈</strong></p>
 </footer>
 
 <script>
-  // Dark Mode Toggle
-  const modeToggle = document.getElementById('modeToggle');
-  modeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-  });
-
-  // Form Validation
-  const form = document.getElementById('feedbackForm');
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    let valid = true;
-
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    // Name validation
-    if(name === '') {
-      document.getElementById('nameError').style.display = 'block';
-      valid = false;
-    } else { document.getElementById('nameError').style.display = 'none'; }
-
-    // Email validation
-    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-    if(email === '' || !emailPattern.test(email)) {
-      document.getElementById('emailError').style.display = 'block';
-      valid = false;
-    } else { document.getElementById('emailError').style.display = 'none'; }
-
-    // Subject validation
-    if(subject === '') {
-      document.getElementById('subjectError').style.display = 'block';
-      valid = false;
-    } else { document.getElementById('subjectError').style.display = 'none'; }
-
-    // Message validation
-    if(message === '') {
-      document.getElementById('messageError').style.display = 'block';
-      valid = false;
-    } else { document.getElementById('messageError').style.display = 'none'; }
-
-    if(valid) {
-      alert('Thank you for your feedback, ' + name + '!');
-      form.reset();
-    }
+  document.getElementById("modeToggle").addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
   });
 </script>
+
 </body>
 </html>
